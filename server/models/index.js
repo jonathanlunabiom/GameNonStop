@@ -1,23 +1,8 @@
-//create a user, login in
-//email, username, password.
-//Order schemas // library of games, by a virutal
-// toJSON: {
-//     virtuals: true,
-//   },
-//   id: false,   orders length
-//Favorite games: [Favorite] include the Favorite schema
+const User = require("./User");
+const Product = require("./Product");
+const Category = require("./Category");
+const Cart = require("./Cart");
+const Favorites = require("./Favorites");
+const Games = require("./Games");
 
-//Category
-
-//Product, name, description, iamge, price, category
-// type: Schema.Types.ObjectId,
-// ref: 'Category',
-// required: true
-
-//Cart: purchaseDate, quantity and products
-// {
-//     type: Schema.Types.ObjectId,
-//     ref: 'Product'
-//   }
-
-//Favorites
+module.exports = { User, Product, Category, Cart, Favorites, Games };
