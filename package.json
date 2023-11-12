@@ -22,5 +22,8 @@
   "homepage": "https://github.com/jonathanlunabiom/GameNonStop#readme",
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "styled-components": "^6.1.1"
   }
 }
