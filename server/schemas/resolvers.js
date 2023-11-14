@@ -1,66 +1,61 @@
-const User = require('../models/User');
-const { signToken, AuthenticationError } = require('../utils/auth');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const { User, Product, Category } = require("../models");
+const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
+  Query: {
+    categories: async () => {
+      return await Category.find();
+    },
+  },
   Mutation: {
-    register: async (_, { username, email, password }) => {
+    register: async (_, args) => {
       // Registration logic...
       try {
         // Check if a user already exists with the given email
-        const existingUser = await User.findOne({ email: email.toLowerCase().trim() });
-        if (existingUser) {
-          throw new Error('Email already in use');
-        }
-
-        // Hash password with bcryptjs
-        const hashedPassword = await bcrypt.hash(password, 10); // Salt rounds is 10
-
-        // Create a new user with the hashed password
-        const newUser = new User({
-          username: username.trim(),
-          email: email.toLowerCase().trim(), // Ensure email is in lowercase for uniqueness constraints
-          password: hashedPassword,
+        const userToRegister = await User.findOne({
+          email: args.email,
         });
 
-        // Save the new user to the database
-        const result = await newUser.save();
+        if (userToRegister) {
+          throw new Error("Email already in use");
+        }
+
+        // Create a new user with the hashed password
+        const user = await User.create(args);
 
         // Create a JWT token for the new user
-        const token = jwt.sign(
-          { userId: result.id, email: result.email },
-          process.env.JWT_SECRET, // Use the secret from your environment variables
-          { expiresIn: '1h' } // Token expires in one hour
-        );
+        const token = signToken(user);
 
         // Return the auth payload (including the JWT token and user information)
-        return {
-          token: token,
-          user: result,
-        };
+        return { token, user };
       } catch (error) {
         throw new Error(error.message);
       }
     },
-    
-    login: async (_, { email, password }) => {
-        const user = await User.findOne({ email });
 
-        if (!user) {
-          throw AuthenticationError;
-        }
-  
-        const correctPw = await user.isCorrectPassword(password);
-  
-        if (!correctPw) {
-          throw AuthenticationError;
-        }
-  
-        const token = signToken(user);
-  
-        return { token, user };
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      console.log(user);
+
+      if (!user) {
+        throw AuthenticationError;
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      console.log(correctPw);
+
+      if (!correctPw) {
+        throw AuthenticationError;
+      }
+
+      const token = await signToken(user);
+
+      return { token, user };
     },
   },
   // ... add other resolvers ...
 };
+
+module.exports = resolvers;
