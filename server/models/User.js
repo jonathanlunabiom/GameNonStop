@@ -1,25 +1,18 @@
 // Import the required modules
-const mongoose = require("mongoose");
 
-const { Schema } = mongoose;
+const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
-const Cart = require("./Order");
+const Cart = require("./Cart");
 const Games = require("./Games");
 
 // User schema definition using the new Schema constructor
 const userSchema = new Schema(
   {
     // Define firstName field with type and validations
-    firstName: {
+    username: {
       type: String,
       required: true, // Make this field requiered
       trim: true, // Trims whitespace from the email
-    },
-    // Define lastName field with type and validations
-    lastName: {
-      type: String,
-      required: true,
-      trim: true,
     },
     email: {
       type: String,
@@ -27,13 +20,15 @@ const userSchema = new Schema(
       unique: true, // Ensure email is unique in the database
       trim: true,
       lowercase: true, // Converts the email to lowercase
-      match: [/.+\@.+\..+/, 'Please fill a valid email address'], // Regex validation for email
+      match: [
+        /^([a-zA-Z0-9_\.-]+)@([a-zA-Z\d\.-]+)\.([a-zA-Z]{2,})$/,
+        "Please fill a valid email address",
+      ], // Regex validation for email
     },
     password: {
       type: String,
       required: true,
       minlength: 5, // Set a minimum length for the password
-      select: false, // Prevents the password from being returned in queries by default
     },
     // Define orders as an array of Cart schema references
     orders: [Cart.schema],
@@ -69,7 +64,7 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 // Create the User model from the schema definition
-const User = mongoose.model("User", userSchema);
+const User = model("User", userSchema);
 
 // Export the User model for use in other parts of the application
 module.exports = User;
