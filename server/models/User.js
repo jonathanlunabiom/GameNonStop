@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 const bcrypt = require("bcrypt");
-const Cart = require("./Order");
+const Cart = require("./Cart");
 const Games = require("./Games");
 
 // User schema definition using the new Schema constructor
