@@ -1,24 +1,16 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import GameList from './assets/components/videogames'
 import './App.css'
+import Layout from "./assets/components/Layout";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0)
+  //const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div id ="card-Example"> 
-        {GameList()}
-        {GameList()}
-        {GameList()}
-        {GameList()}
-        {GameList()}
-        {GameList()}
-      </div>
-    </>
-  )
-}
+    <Router>
+      <Layout />
+    </Router>
+  );
+};
 
-export default App
+export default App;
