@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Layout from "./assets/components/Layout";
+import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './thems';
 import GlobalStyles from './globalStyles';
@@ -45,4 +45,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
