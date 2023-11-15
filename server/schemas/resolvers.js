@@ -36,15 +36,11 @@ const resolvers = {
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
-      console.log(user);
-
       if (!user) {
         throw AuthenticationError;
       }
 
       const correctPw = await user.isCorrectPassword(password);
-
-      console.log(correctPw);
 
       if (!correctPw) {
         throw AuthenticationError;
@@ -54,6 +50,17 @@ const resolvers = {
 
       return { token, user };
     },
+    addOrder: async(_,{products}, context) => {
+      if (context.user) {
+
+        const order = Order.create({products});
+
+        await User.findByIdAndUpdate(context.user._id,{ $push: {orders: order}})
+
+        return order
+      }
+      throw AuthenticationError
+    }
   },
   // ... add other resolvers ...
 };

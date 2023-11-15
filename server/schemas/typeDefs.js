@@ -42,6 +42,7 @@ type Query{
 type Mutation {
   register(username: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
+  addOrder(products: [ID]!): Cart
 }
 
 `;
