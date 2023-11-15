@@ -43,6 +43,7 @@ type Auth {
 type Query{
   categories: [Category]
   me: [User]
+  order(_id: ID!): Cart
 }
 
 type Mutation {
