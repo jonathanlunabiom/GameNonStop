@@ -4,6 +4,7 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 const Cart = require("./Cart");
 const Games = require("./Games");
+const Favorites = require("./Favorites");
 
 // User schema definition using the new Schema constructor
 const userSchema = new Schema(
@@ -30,6 +31,7 @@ const userSchema = new Schema(
       required: true,
       minlength: 5, // Set a minimum length for the password
     },
+    wishlist: [Favorites.schema],
     // Define orders as an array of Cart schema references
     orders: [Cart.schema],
     // Define games as an array of Games schema references

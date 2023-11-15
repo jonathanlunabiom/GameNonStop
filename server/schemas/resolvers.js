@@ -1,4 +1,4 @@
-const { User, Product, Category } = require("../models");
+const { User, Product, Category, Cart, Favorites } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
@@ -6,6 +6,14 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
+    profile: async (_, _, context) => {
+      if (context.user) {
+        return await User.findById(context.user._id);
+      }
+      throw AuthenticationError;
+    },
+
+  
   },
   Mutation: {
     register: async (_, args) => {
@@ -50,17 +58,29 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async(_,{products}, context) => {
+    addOrder: async (_, { products }, context) => {
       if (context.user) {
+        const order = await Cart.create({ products });
 
-        const order = Order.create({products});
+        await User.findByIdAndUpdate(context.user._id, {
+          $push: { orders: order },
+        });
 
-        await User.findByIdAndUpdate(context.user._id,{ $push: {orders: order}})
-
-        return order
+        return order;
       }
-      throw AuthenticationError
-    }
+      throw AuthenticationError;
+    },
+    addtoFavorites: async (_, game, context) => {
+      if (context.user) {
+        const createFav = await Favorites.create(game);
+
+        await User.findByIdAndUpdate(context.user._id, {
+          $push: { wishlist: createFav },
+        });
+        return createFav;
+      }
+      throw AuthenticationError;
+    },
   },
   // ... add other resolvers ...
 };

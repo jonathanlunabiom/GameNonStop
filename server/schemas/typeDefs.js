@@ -26,6 +26,11 @@ type User {
   orders: [Cart]
 }
 
+type Favorites {
+  _id: ID!
+  name: String
+}
+
 type Checkout {
   session: ID
 }
@@ -37,12 +42,14 @@ type Auth {
 
 type Query{
   categories: [Category]
+  me: [User]
 }
 
 type Mutation {
   register(username: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
   addOrder(products: [ID]!): Cart
+  addtoFavorites (name: String, id: ID!): Favorites 
 }
 
 `;
