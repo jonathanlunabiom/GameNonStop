@@ -1,16 +1,20 @@
-import { useState } from 'react'
-import './App.css'
-import Layout from "./assets/components/Layout";
-import { BrowserRouter as Router } from "react-router-dom";
+import { useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme } from './thems';
+import GlobalStyles from './globalStyles';
+import Routes from './Routes';
 
 function App() {
-  //const [count, setCount] = useState(0)
+  const [theme, setTheme] = useState('light');
+  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
   return (
-    <Router>
-      <Layout />
-    </Router>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <GlobalStyles />
+      <button onClick={toggleTheme}>Change Theme</button>
+      <Routes />
+    </ThemeProvider>
   );
-};
+}
 
 export default App;
