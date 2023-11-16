@@ -1,7 +1,7 @@
 const typeDefs = `
 type Category {
   _id: ID
-  name: String!
+  name: String
 }
 
 type Product {
@@ -18,12 +18,17 @@ type Cart {
   purchaseDate: String
   cartProducts: [Product]
 }
+type Games {
+  ownedGames: [ID!]
+}
 
 type User {
   _id: ID
   username: String!
   email: String!
+  wishlist: [Favorites]
   orders: [Cart]
+  games: [Games]
 }
 
 type Favorites {
@@ -42,8 +47,9 @@ type Auth {
 
 type Query{
   categories: [Category]
-  me: [User]
+  profile: User
   order(_id: ID!): Cart
+  products: [Product]
 }
 
 type Mutation {

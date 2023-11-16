@@ -6,7 +6,7 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
-    profile: async (_, _, context) => {
+    profile: async (_, args, context) => {
       if (context.user) {
         return await User.findById(context.user._id);
       }
@@ -21,6 +21,13 @@ const resolvers = {
         return user.orders.id(_id);
       }
       throw AuthenticationError;
+    },
+    products: async () => {
+      return await Product.find();
+      // .populate({
+      //   path: "category.name",
+      //   populate: "product",
+      // });
     },
   },
   Mutation: {
@@ -48,7 +55,6 @@ const resolvers = {
         throw new Error(error.message);
       }
     },
-
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
