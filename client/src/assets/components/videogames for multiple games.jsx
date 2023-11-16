@@ -12,7 +12,7 @@ const GameList = () => {
         const data = await response.json();
         
         if(data.results.length > 0 ){
-            setGame(data.results[0])
+            setGames(data.results[0])
         } else {
             console.error('No game found');
         } 
