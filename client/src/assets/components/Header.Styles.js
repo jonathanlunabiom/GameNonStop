@@ -9,7 +9,7 @@ export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 5rem;
   color: ${({ theme }) => theme.text};
   border: solid 1px black;
 `;
@@ -23,6 +23,7 @@ export const Navigation = styled.nav`
     color: white;
     text-decoration: none;
     font-weight: bold;
+    font-size: 2rem;
 
     &:hover {
       text-decoration: underline;
@@ -33,8 +34,9 @@ export const Navigation = styled.nav`
 export const SocialMediaButton = styled.a`
   color: white;
   margin: 0 10px;
-  font-size: 1.5rem;
+  font-size: 2rem;
   transition: color 0.3s ease;
+  align-items: end;
 
   &:hover {
     color: #ccc; 

@@ -8,7 +8,7 @@ const GameList = () => {
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const response = await fetch(`https://api.rawg.io/api/games?key=${YOUR_API_KEY}&page_size=1&ordering=-rating`);
+        const response = await fetch(`https://api.rawg.io/api/games?key=${YOUR_API_KEY}&page_size=100&ordering=+rating`);
         const data = await response.json();
         
         if(data.results.length > 0 ){
