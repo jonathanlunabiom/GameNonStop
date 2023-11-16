@@ -56,7 +56,7 @@ type Mutation {
   register(username: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
   addOrder(products: [ID]!): Cart
-  addtoFavorites (name: String, id: ID!): Favorites 
+  addtoFavorites (_id: ID!): Product
 }
 
 `;

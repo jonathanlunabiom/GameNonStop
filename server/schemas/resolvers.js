@@ -84,14 +84,14 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    addtoFavorites: async (_, game, context) => {
+    addtoFavorites: async (_, { _id }, context) => {
       if (context.user) {
-        const createFav = await Favorites.create(game);
-
-        await User.findByIdAndUpdate(context.user._id, {
-          $push: { wishlist: createFav },
+        const gameToAdd = await Product.findById(_id);
+        console.log(gameToAdd);
+        const user = await User.findByIdAndUpdate(context.user._id, {
+          $push: { wishlist: _id },
         });
-        return createFav;
+        return user;
       }
       throw AuthenticationError;
     },
