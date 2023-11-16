@@ -1,7 +1,7 @@
 const typeDefs = `
 type Category {
   _id: ID
-  name: String!
+  name: String
 }
 
 type Product {
@@ -18,12 +18,22 @@ type Cart {
   purchaseDate: String
   cartProducts: [Product]
 }
+type Games {
+  ownedGames: [ID!]
+}
 
 type User {
   _id: ID
   username: String!
   email: String!
+  wishlist: [Favorites]
   orders: [Cart]
+  games: [Games]
+}
+
+type Favorites {
+  _id: ID!
+  name: String
 }
 
 type Checkout {
@@ -37,11 +47,16 @@ type Auth {
 
 type Query{
   categories: [Category]
+  profile: User
+  order(_id: ID!): Cart
+  products: [Product]
 }
 
 type Mutation {
   register(username: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
+  addOrder(products: [ID]!): Cart
+  addtoFavorites (name: String, id: ID!): Favorites 
 }
 
 `;
