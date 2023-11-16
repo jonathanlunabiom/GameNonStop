@@ -25,10 +25,10 @@ const CheckoutForm = () => {
   }, []); 
   const fetchClientSecret = async () => {
     try {
-      const items = [
-        { id: 'item_1', name: 'Product A', quantity: 2, price: 500 },
-        { id: 'item_2', name: 'Product B', quantity: 1, price: 750 },
-      ];
+    //   const items = [
+    //     { id: 'item_1', name: 'Product A', quantity: 2, price: 500 },
+    //     { id: 'item_2', name: 'Product B', quantity: 1, price: 750 },
+    //   ];
 
       const response = await fetch('http://localhost:3001/payment', {
         method: 'POST',
