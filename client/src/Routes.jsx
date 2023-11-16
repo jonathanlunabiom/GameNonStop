@@ -1,19 +1,18 @@
-import { Route, Routes as AppRoutes, Navigate } from "react-router-dom";
-import Games from "./assets/components/Games.jsx";
-import Cart from "./assets/components/Cart.jsx";
+// AppRoutes.jsx
+import { Routes, Route } from "react-router-dom";
+import Layout from "./assets/components/Layout";
+import Games from "./assets/components/Games";
+import Cart from "./assets/components/Cart";
 
-const DefaultRoute = () => {
-    return <Navigate to="/games" />;
-}
-
-const Routes = () => {
-    return (
-        <AppRoutes>
-            <Route path="/" element={<DefaultRoute />} />
-            <Route path="/games" element={<Games />} />
-            <Route path="/cart" element={<Cart />} />
-        </AppRoutes>
-    );
+const AppRoutes = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Games />} />
+        <Route path="cart" element={<Cart />} />
+      </Route>
+    </Routes>
+  );
 };
 
-export default Routes;
+export default AppRoutes;
