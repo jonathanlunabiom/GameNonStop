@@ -1,9 +1,21 @@
-import { HeaderContainer, Navigation, Logo, SocialMediaButton, StyledNavLink } from './Header.Styles.js';
-import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { HeaderContainer, Navigation, Logo, SocialMediaButton, StyledNavLink, IconButton, LoginButton } from './Header.Styles.js';
+import { FaFacebookF, FaTwitter, FaInstagram, FaRegSun, FaRegMoon } from 'react-icons/fa';
 import { useTheme } from './ThemeContext.jsx'; 
+import LoginFormModal from './LogIn.jsx'; 
 
 const Header = () => {
   const { toggleTheme, theme } = useTheme();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const handleLoginClick = () => {
+    setShowLoginModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowLoginModal(false);
+  };
+  
 
   return ( 
     <HeaderContainer>
@@ -12,10 +24,12 @@ const Header = () => {
         <StyledNavLink to="/">Home</StyledNavLink> 
         <StyledNavLink to="/WishList">Wish List</StyledNavLink> 
         <StyledNavLink to="/cart">My Cart</StyledNavLink>
+         <LoginButton onClick={handleLoginClick}>Log In</LoginButton>
+      <LoginFormModal show={showLoginModal} onClose={handleCloseModal} />
       </Navigation>
-      <button onClick={toggleTheme}>
-        CHange them {theme === 'light' ? 'dark' : 'light'}
-      </button>
+      <IconButton onClick={toggleTheme}>
+      {theme === 'light' ? <FaRegMoon size={24} /> : <FaRegSun size={24} />} 
+      </IconButton>
       <div>
         <SocialMediaButton href="https://www.facebook.com" target="_blank" aria-label="Facebook">
           <FaFacebookF />

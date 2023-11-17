@@ -63,3 +63,35 @@ export const Logo = styled.h1`
   font-size: 2rem;
   cursor: pointer;
 `;
+export const LoginButton = styled.button`
+  background-color: #4CAF50; 
+  color: white; 
+  padding: 10px 20px;
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+
+  &:hover {
+    background-color: #45a049; 
+  }
+`;
+export const IconButton = styled.button`
+  background-color:gray;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #f0f0f0; 
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
