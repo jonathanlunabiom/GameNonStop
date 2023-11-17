@@ -1,10 +1,19 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-
 const favoriteSchema = new Schema({
   name: {
     type: String,
-    required: true,
+  },
+  image: {
+    type: String,
+    require: true,
+  },
+  price: {
+    type: Number,
+    require: true,
+  },
+  category: {
+    type: String,
   },
 });
 
