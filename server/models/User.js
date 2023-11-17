@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const Cart = require("./Cart");
 const Games = require("./ownedGames");
 const Favorites = require("./Favorites");
+const Product = require("./Product");
 
 // User schema definition using the new Schema constructor
 const userSchema = new Schema(
@@ -31,11 +32,11 @@ const userSchema = new Schema(
       required: true,
       minlength: 5, // Set a minimum length for the password
     },
-    wishlist: [Favorites.schema],
+    wishlist: [Product.schema],
     // Define orders as an array of Cart schema references
     orders: [Cart.schema],
     // Define games as an array of Games schema references
-    games: [Games.schema],
+    games: [Product.schema],
   },
   {
     // Convert documents to JSON including virtuals
