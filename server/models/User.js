@@ -32,11 +32,22 @@ const userSchema = new Schema(
       required: true,
       minlength: 5, // Set a minimum length for the password
     },
-    wishlist: [Product.schema],
-    // Define orders as an array of Cart schema references
-    orders: [Cart.schema],
-    // Define games as an array of Games schema references
-    games: [Product.schema],
+    wishlist: {
+      type: Schema.Types.ObjectId,
+      ref: "Favorite",
+    },
+    orders: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Cart",
+      },
+    ],
+    games: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Product",
+      },
+    ],
   },
   {
     // Convert documents to JSON including virtuals

@@ -1,20 +1,17 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const favoriteSchema = new Schema({
-  name: {
-    type: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
   },
-  image: {
-    type: String,
-    require: true,
-  },
-  price: {
-    type: Number,
-    require: true,
-  },
-  category: {
-    type: String,
-  },
+  products: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+    },
+  ],
 });
 
 Favorites = mongoose.model("Favorites", favoriteSchema);
