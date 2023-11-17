@@ -4,12 +4,23 @@ import GlobalStyles from './globalStyles';
 import AppRoutes from './Routes';
 import { ThemeProvider } from './assets/components/ThemeContext';
 import { useTheme } from './assets/components/ThemeContext';
+import { ApolloProvider } from '@apollo/client';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: '/graphql',
+  cache: new InMemoryCache(),
+});
+
 
 function App() {
   return (
-    <ThemeProvider> 
-      <StyledThemeProviderWrapper />
-    </ThemeProvider>
+    <ApolloProvider client={client}>
+      <ThemeProvider> 
+        <StyledThemeProviderWrapper />
+      </ThemeProvider>
+    </ApolloProvider>
+
   );
 }
 
