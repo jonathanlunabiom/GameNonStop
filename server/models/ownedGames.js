@@ -5,8 +5,20 @@ const { Schema } = mongoose;
 const gamesSchema = new Schema({
   ownedGames: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Product",
+      name: {
+        type: String,
+      },
+      image: {
+        type: String,
+        require: true,
+      },
+      price: {
+        type: Number,
+        require: true,
+      },
+      category: {
+        type: String,
+      },
     },
   ],
 });

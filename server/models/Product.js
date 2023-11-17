@@ -17,9 +17,9 @@ const productSchema = new Schema({
     min: 0.99,
   },
   category: {
-    type: Schema.Types.ObjectId,
-    ref: "Category",
+    type: String,
     required: true,
+    trim: true,
   },
 });
 

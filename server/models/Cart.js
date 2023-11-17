@@ -7,12 +7,36 @@ const cartSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
   cartProducts: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Product",
+      name: {
+        type: String,
+        require: true,
+      },
+      image: {
+        type: String,
+        require: true,
+      },
+      price: {
+        type: Number,
+        require: true,
+      },
+      category: {
+        type: String,
+      },
     },
   ],
+  total: {
+    type: Number,
+  },
+  isPayed: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const Cart = mongoose.model("Cart", cartSchema);
