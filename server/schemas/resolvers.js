@@ -101,7 +101,6 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    
   },
   // ... add other resolvers ...
 };
