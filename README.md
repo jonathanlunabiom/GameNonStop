@@ -5,7 +5,7 @@ In this project, we embark on creating a cutting-edge MERN-stack single-page app
 
 Starting from the ground up, this project was an opportunity to refine our front-end skills with React and deepen your understanding of multi-server operations in a MERN framework. Our evolving expertise, shaped by previous projects, guide us to a nuanced approach to this application.
 
-This project encompass:
+In this project we encompass:
 
 * Front-end development with React.
 * Back-end integration using GraphQL with a Node.js and Express.js server.
@@ -18,6 +18,44 @@ This project encompass:
 * A comprehensive README featuring the project’s name, description, technologies used, screenshots, and a link to the deployed application.
 * This project is not just a testament to your technical skills but also a demonstration of your growth and adaptability in full-stack development.
 
-![Explore the docs](https://github.com/jonathanlunabiom/GameNonStop) 
-![Report Bug](https://github.com/jonathanlunabiom/GameNonStop/issues)
-![Request Feature](https://github.com/jonathanlunabiom/GameNonStop/issues)
+![Explore the docs](https://github.com/jonathanlunabiom/GameNonStop) - ![Report Bug](https://github.com/jonathanlunabiom/GameNonStop/issues) - ![Request Feature](https://github.com/jonathanlunabiom/GameNonStop/issues)
+
+## Table of Contents
+* [About the project](#about-the-project)
+* [Concept](#concept)
+* [User Story](#user-story)
+* [Technologies Used](#technologies)
+* [Installation](#installation)  
+* [Usage](#usage)
+* [Questions](#questions)
+
+## About the project
+
+
+
+## Concept
+
+
+
+## User Story
+
+**As a** gaming enthusiast,
+
+**I want** an online platform where I can easily explore and purchase a wide variety of video games,
+
+**So that I** can enjoy a diverse gaming experience across different genres and platforms at competitive prices.
+
+
+## Technologies Used
+
+
+
+## Instalation
+
+
+
+## Usage
+
+
+
+## Questions
