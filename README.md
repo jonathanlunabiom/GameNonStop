@@ -18,6 +18,7 @@ In this project we encompass:
 * A comprehensive README featuring the project’s name, description, technologies used, screenshots, and a link to the deployed application.
 * This project is not just a testament to your technical skills but also a demonstration of your growth and adaptability in full-stack development.
 
+
 ![Explore the docs](https://github.com/jonathanlunabiom/GameNonStop) - ![Report Bug](https://github.com/jonathanlunabiom/GameNonStop/issues) - ![Request Feature](https://github.com/jonathanlunabiom/GameNonStop/issues)
 
 ## Table of Contents
