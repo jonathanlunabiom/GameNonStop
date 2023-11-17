@@ -4,11 +4,7 @@ const Games = () => {
     return (
         <div id ="card-Example"> 
             {GameList()}
-            {GameList()}
-            {GameList()}
-            {GameList()}
-            {GameList()}
-            {GameList()}
+
         </div>
   )  ;
 };

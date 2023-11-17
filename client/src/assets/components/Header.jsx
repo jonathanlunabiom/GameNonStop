@@ -1,8 +1,11 @@
 import { HeaderContainer, Navigation, Logo, SocialMediaButton, StyledNavLink } from './Header.Styles.js';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { useTheme } from './ThemeContext.jsx'; 
 
-const Header = ({ toggleTheme, currentTheme }) => {
-  return (
+const Header = () => {
+  const { toggleTheme, theme } = useTheme();
+
+  return ( 
     <HeaderContainer>
       <Logo>GameNonStop</Logo>
       <Navigation>
@@ -11,7 +14,7 @@ const Header = ({ toggleTheme, currentTheme }) => {
         <StyledNavLink to="/cart">My Cart</StyledNavLink>
       </Navigation>
       <button onClick={toggleTheme}>
-        Change to {currentTheme === 'light' ? 'Dark' : 'Light'} Theme
+        CHange them {theme === 'light' ? 'dark' : 'light'}
       </button>
       <div>
         <SocialMediaButton href="https://www.facebook.com" target="_blank" aria-label="Facebook">
@@ -29,3 +32,4 @@ const Header = ({ toggleTheme, currentTheme }) => {
 };
 
 export default Header;
+
