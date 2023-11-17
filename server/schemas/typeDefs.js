@@ -1,8 +1,4 @@
 const typeDefs = `
-type Category {
-  _id: ID
-  name: String
-}
 
 type Product {
   _id: ID
@@ -10,7 +6,7 @@ type Product {
   image: String
   quantity: Int
   price: Float
-  category: Category
+  category: String
 }
 
 type Cart {
@@ -45,11 +41,25 @@ type Auth {
   user: User
 }
 
+type Checkout {
+  session: ID
+}
+
+input ProductInput {
+  _id: ID
+  purchaseQuantity: Int
+  name: String
+  image: String
+  price: Float
+  quantity: Int
+}
+
 type Query{
-  categories: [Category]
   profile: User
-  order(_id: ID!): Cart
+  order(_id: [ID!]!): Cart 
   products: [Product]
+  product(_id: ID!): Product
+  checkout(products: [ProductInput]): Checkout
 }
 
 type Mutation {
@@ -58,6 +68,5 @@ type Mutation {
   addOrder(products: [ID]!): Cart
   addtoFavorites (_id: ID!): Product
 }
-
 `;
 module.exports = typeDefs;

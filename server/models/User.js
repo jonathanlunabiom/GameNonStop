@@ -31,12 +31,7 @@ const userSchema = new Schema(
       required: true,
       minlength: 5, // Set a minimum length for the password
     },
-    wishlist: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Product",
-      },
-    ],
+    wishlist: [Favorites.schema],
     // Define orders as an array of Cart schema references
     orders: [Cart.schema],
     // Define games as an array of Games schema references
