@@ -1,11 +1,8 @@
-const { User, Product, Category, Cart, Favorites } = require("../models");
+const { User, Product, Cart, Games } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    categories: async () => {
-      return await Category.find();
-    },
     profile: async (_, args, context) => {
       if (context.user) {
         return await User.findById(context.user._id);
@@ -24,10 +21,9 @@ const resolvers = {
     },
     products: async () => {
       return await Product.find();
-      // .populate({
-      //   path: "category.name",
-      //   populate: "product",
-      // });
+    },
+    product: async (_, { _id }) => {
+      return await Product.findById(_id);
     },
   },
   Mutation: {
@@ -74,7 +70,7 @@ const resolvers = {
     },
     addOrder: async (_, { products }, context) => {
       if (context.user) {
-        const order = await Cart.create({ products });
+        const order = await Cart.create(products);
 
         await User.findByIdAndUpdate(context.user._id, {
           $push: { orders: order },
@@ -84,17 +80,28 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    addtoFavorites: async (_, game, context) => {
+    addtoFavorites: async (_, { _id }, context) => {
       if (context.user) {
-        const createFav = await Favorites.create(game);
+        let flag = false;
 
-        await User.findByIdAndUpdate(context.user._id, {
-          $push: { wishlist: createFav },
+        const gameToAdd = await Product.findById(_id);
+        const checkRepetition = await User.findById(context.user._id);
+        checkRepetition.wishlist.map((el) => {
+          if (el.name === gameToAdd.name) {
+            flag = true;
+          }
         });
-        return createFav;
+        if (!flag) {
+          await User.findByIdAndUpdate(context.user._id, {
+            $push: { wishlist: gameToAdd },
+          });
+          return gameToAdd;
+        }
+        throw AuthenticationError;
       }
       throw AuthenticationError;
     },
+    
   },
   // ... add other resolvers ...
 };
