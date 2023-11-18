@@ -1,4 +1,4 @@
-const { User, Product, Cart, Games } = require("../models");
+const { User, Product, Cart, Games, Favorites } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
@@ -11,13 +11,41 @@ const resolvers = {
     },
     order: async (_, { _id }, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: "orders.cartProducts",
-          populate: "category",
-        });
-        return user.orders.id(_id);
+        try {
+          const order = await Cart.findById(_id).populate({
+            path: "items.product",
+            model: "Product",
+          });
+
+          if (!order) {
+            throw new Error("Orden no encontrada");
+          }
+          return order;
+        } catch (error) {
+          console.error(error);
+          throw new Error("Error al recuperar la orden");
+        }
       }
-      throw AuthenticationError;
+      throw new Error("Autenticación requerida");
+    },
+    userOrders: async (_, __, context) => {
+      if (!context.user) {
+        throw new Error("Autenticación requerida");
+      }
+
+      try {
+        const user = await User.findById(context.user._id).populate({
+          path: "orders",
+          populate: {
+            path: "items.product",
+            model: "Product",
+          },
+        });
+        console.log(user);
+        return user.orders;
+      } catch (error) {
+        throw new Error("Error al obtener las órdenes del usuario");
+      }
     },
     products: async () => {
       return await Product.find();
@@ -68,38 +96,87 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async (_, { products }, context) => {
+    addOrder: async (_, { items, total }, context) => {
       if (context.user) {
-        const order = await Cart.create(products);
-
-        await User.findByIdAndUpdate(context.user._id, {
-          $push: { orders: order },
+        // Crear la orden
+        const order = await Cart.create({
+          user: context.user._id,
+          items: items.map((item) => ({
+            product: item.productId,
+            quantity: item.quantity,
+          })),
+          total: total,
+          isPaid: false,
         });
 
-        return order;
+        console.log(order);
+
+        await User.findByIdAndUpdate(context.user._id, {
+          $push: { orders: order._id },
+        });
+
+        const populatedOrder = await Cart.findById(order._id).populate({
+          path: "items.product",
+          model: "Product",
+        });
+        console.log(populatedOrder);
+
+        return populatedOrder;
       }
-      throw AuthenticationError;
+      throw new AuthenticationError("Not Authenticated");
     },
     addtoFavorites: async (_, { _id }, context) => {
       if (context.user) {
-        let flag = false;
-
-        const gameToAdd = await Product.findById(_id);
-        const checkRepetition = await User.findById(context.user._id);
-        checkRepetition.wishlist.map((el) => {
-          if (el.name === gameToAdd.name) {
-            flag = true;
-          }
-        });
-        if (!flag) {
-          await User.findByIdAndUpdate(context.user._id, {
-            $push: { wishlist: gameToAdd },
-          });
-          return gameToAdd;
+        // Encontrar el producto a añadir
+        const productToAdd = await Product.findById(_id);
+        if (!productToAdd) {
+          throw new Error("Product not found");
         }
-        throw AuthenticationError;
+
+        // Obtener o crear el objeto de favoritos del usuario
+        let favorite = await Favorites.findOne({ user: context.user._id });
+        if (!favorite) {
+          favorite = await Favorites.create({
+            user: context.user._id,
+            products: [],
+          });
+          await User.findByIdAndUpdate(context.user._id, {
+            wishlist: favorite._id,
+          });
+        }
+
+        // Añadir el producto a los favoritos si aún no está presente
+        if (!favorite.products.includes(_id)) {
+          favorite.products.push(_id);
+          await favorite.save();
+        }
+
+        return productToAdd;
       }
-      throw AuthenticationError;
+      throw new AuthenticationError("Not Authenticated");
+
+      // if (context.user) {
+      //   let flag = false;
+
+      //   const gameToAdd = await Product.findById(_id);
+
+      //   const checkRepetition = await User.findById(context.user._id);
+
+      //   checkRepetition.wishlist.map((el) => {
+      //     if (el.name === gameToAdd.name) {
+      //       flag = true;
+      //     }
+      //   });
+
+      //   if (!flag) {
+      //     await User.findByIdAndUpdate(context.user._id, {
+      //       $push: { wishlist: gameToAdd },
+      //     });
+      //     return gameToAdd;
+      //   }
+      //   throw AuthenticationError;
+      // }
+      // throw AuthenticationError;
     },
   },
   // ... add other resolvers ...

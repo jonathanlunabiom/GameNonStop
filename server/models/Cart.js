@@ -11,32 +11,34 @@ const cartSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
-  cartProducts: [
+  items: [
     {
-      name: {
-        type: String,
-        require: true,
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+        required: true,
       },
-      image: {
-        type: String,
-        require: true,
-      },
-      price: {
+      quantity: {
         type: Number,
-        require: true,
-      },
-      category: {
-        type: String,
+        required: true,
+        min: 1,
       },
     },
   ],
   total: {
     type: Number,
+    required: true,
   },
-  isPayed: {
+  isPaid: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
+  stripePaymentIntentId: {
+    type: String, // ID del Intento de Pago de Stripe
+  },
+  paymentDate: {
+    type: Date, // Fecha en la que se realizó el pago
+  },
 });
 
 const Cart = mongoose.model("Cart", cartSchema);
