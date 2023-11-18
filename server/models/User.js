@@ -32,10 +32,12 @@ const userSchema = new Schema(
       required: true,
       minlength: 5, // Set a minimum length for the password
     },
-    wishlist: {
-      type: Schema.Types.ObjectId,
-      ref: "Favorite",
-    },
+    wishlist: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Favorite",
+      },
+    ],
     orders: [
       {
         type: Schema.Types.ObjectId,

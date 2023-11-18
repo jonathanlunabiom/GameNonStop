@@ -1,4 +1,4 @@
-const { User, Product, Cart, Games } = require("../models");
+const { User, Product, Cart, Games, Favorites } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
@@ -109,6 +109,8 @@ const resolvers = {
           isPaid: false,
         });
 
+        console.log(order);
+
         await User.findByIdAndUpdate(context.user._id, {
           $push: { orders: order._id },
         });
@@ -117,6 +119,7 @@ const resolvers = {
           path: "items.product",
           model: "Product",
         });
+        console.log(populatedOrder);
 
         return populatedOrder;
       }
@@ -131,9 +134,9 @@ const resolvers = {
         }
 
         // Obtener o crear el objeto de favoritos del usuario
-        let favorite = await Favorite.findOne({ user: context.user._id });
+        let favorite = await Favorites.findOne({ user: context.user._id });
         if (!favorite) {
-          favorite = await Favorite.create({
+          favorite = await Favorites.create({
             user: context.user._id,
             products: [],
           });
