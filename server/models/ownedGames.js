@@ -3,22 +3,15 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const gamesSchema = new Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   ownedGames: [
     {
-      name: {
-        type: String,
-      },
-      image: {
-        type: String,
-        require: true,
-      },
-      price: {
-        type: Number,
-        require: true,
-      },
-      category: {
-        type: String,
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
     },
   ],
 });
