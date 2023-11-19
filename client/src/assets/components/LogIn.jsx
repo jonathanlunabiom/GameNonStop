@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { LOGIN_USER } from '../graphql/mutations';
+import { useMutation } from '@apollo/client';
+import Auth from "../utils/auth";
 
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -45,6 +48,7 @@ const Button = styled.button`
   border-radius: 5px; 
   cursor: pointer; 
   font-size: 16px; 
+  margin-top: 1rem;
 
   &:hover {
     background-color: #45a049; 
@@ -54,10 +58,25 @@ const Button = styled.button`
 const LoginFormModal = ({ show, onClose }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [login, { error }] = useMutation(LOGIN_USER);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    console.log(event)
     // Aquí añadir lógica para el inicio de sesión
+    try {
+      const loginResponse = await login({
+        variables: { email: email, password: password },
+      });
+
+      const token = loginResponse.data.login.token;
+      Auth.login(token);
+    } catch (e) {
+      console.log(e);
+      console.log(error)
+    }
+
     console.log('Iniciar sesión con:', email, password);
   };
 
@@ -87,7 +106,6 @@ const LoginFormModal = ({ show, onClose }) => {
           />
           <Button type="submit">Log In</Button>
         </Form>
-        <Button onClick={handleSignUp}>Sing Up</Button>
       </ModalContent>
     </ModalBackdrop>
   );

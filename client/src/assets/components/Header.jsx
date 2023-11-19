@@ -2,20 +2,34 @@ import React, { useState } from 'react';
 import { HeaderContainer, Navigation, Logo, SocialMediaButton, StyledNavLink, IconButton, LoginButton } from './Header.Styles.js';
 import { FaFacebookF, FaTwitter, FaInstagram, FaRegSun, FaRegMoon } from 'react-icons/fa';
 import { useTheme } from './ThemeContext.jsx'; 
+import Auth from "../utils/auth";
 import LoginFormModal from './LogIn.jsx'; 
+import SignUpFormModal from './SignUp.jsx';
 
 const Header = () => {
   const { toggleTheme, theme } = useTheme();
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
 
   const handleLoginClick = () => {
     setShowLoginModal(true);
   };
 
-  const handleCloseModal = () => {
+  const handleSignupClick = () => {
+    setShowSignUpModal(true);
+  };
+
+  const handleCloseLogin = () => {
     setShowLoginModal(false);
   };
-  
+
+  const handleCloseSignup = () => {
+    setShowSignUpModal(false);
+  };
+
+  const handleLogOut = () => {
+    Auth.logout();
+  };
 
   return ( 
     <HeaderContainer>
@@ -24,8 +38,11 @@ const Header = () => {
         <StyledNavLink to="/">Home</StyledNavLink> 
         <StyledNavLink to="/WishList">Wish List</StyledNavLink> 
         <StyledNavLink to="/cart">My Cart</StyledNavLink>
-         <LoginButton onClick={handleLoginClick}>Log In</LoginButton>
-      <LoginFormModal show={showLoginModal} onClose={handleCloseModal} />
+        <LoginButton onClick={handleLoginClick}>Log In</LoginButton>
+        <LoginButton onClick={handleSignupClick}>Register</LoginButton>
+        <LoginButton onClick={handleLogOut}>Log Out</LoginButton>
+      <LoginFormModal show={showLoginModal} onClose={handleCloseLogin} />
+      <SignUpFormModal show={showSignUpModal} onClose={handleCloseSignup} />
       </Navigation>
       <IconButton onClick={toggleTheme}>
       {theme === 'light' ? <FaRegMoon size={24} /> : <FaRegSun size={24} />} 

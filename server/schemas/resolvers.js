@@ -104,7 +104,7 @@ const resolvers = {
         throw AuthenticationError;
       }
 
-      const token = await signToken(user);
+      const token = signToken(user);
 
       return { token, user };
     },
