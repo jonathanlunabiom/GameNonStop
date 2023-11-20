@@ -6,8 +6,6 @@ import { ThemeProvider } from './assets/components/ThemeContext';
 import { useTheme } from './assets/components/ThemeContext';
 import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { WishlistProvider } from './assets/components/WishlistContext';
-
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -19,9 +17,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider> 
-      <WishlistProvider>
         <StyledThemeProviderWrapper />
-      </WishlistProvider>
       </ThemeProvider>
     </ApolloProvider>
 
@@ -40,4 +36,3 @@ function StyledThemeProviderWrapper() {
     </StyledThemeProvider>
   );
 }
-

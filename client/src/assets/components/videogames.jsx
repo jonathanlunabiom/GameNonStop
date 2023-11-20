@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
 import { GET_PRODUCTS } from '../graphql/queries';
-import { useWishlist } from './WishlistContext';
 
 const AddToCartButton = styled.button`
   background-color: #4CAF50;
@@ -65,7 +64,6 @@ const GameListContainer = styled.div`
   margin-top: 2rem;
 `;
 
-
 const GameList = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
 
@@ -78,18 +76,10 @@ const GameList = () => {
     // Update the cart state/context here
   };
 
-  // const addToWishlist = (game) => {
-  //   // Logic to add the game to the wishlist
-  //   console.log('Adding to wishlist:', game.name);
-  //   // Update the wishlist state/context here
-  // };
-
-  const { addToWishlist } = useWishlist();
-
-  // Use this function in your GameCard component
-  const handleAddToWishlist = (game) => {
-    addToWishlist(game);
+  const addToWishlist = (game) => {
+    // Logic to add the game to the wishlist
     console.log('Adding to wishlist:', game.name);
+    // Update the wishlist state/context here
   };
 
   const games = data.products;
