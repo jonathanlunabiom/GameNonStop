@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useWishlist } from './WishlistContext'; // Import your useWishlist hook
 
 // Example styled components
 const WishlistContainer = styled.div`
@@ -42,16 +43,12 @@ const RemoveButton = styled.button`
 `;
 
 const Wishlist = () => {
-  // Example wishlist items (usually this would come from a global state or API)
-  const [wishlistItems, setWishlistItems] = useState([
-    { id: 1, name: 'Game A', price: 29.99, imageUrl: 'path-to-image' },
-    { id: 2, name: 'Game B', price: 19.99, imageUrl: 'path-to-image' },
-    { id: 3, name: 'Game C', price: 9.99, imageUrl: 'path-to-image' },  
-    ]);
+  // Retrieve wishlistItems and removeFromWishlist function from context
+  const { wishlist: wishlistItems, removeFromWishlist } = useWishlist();
 
   // Function to remove item from wishlist
   const handleRemove = (itemId) => {
-    setWishlistItems(wishlistItems.filter(item => item.id !== itemId));
+    removeFromWishlist(itemId);
   };
 
   return (
