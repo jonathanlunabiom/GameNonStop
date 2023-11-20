@@ -53,6 +53,18 @@ const resolvers = {
     product: async (_, { _id }) => {
       return await Product.findById(_id);
     },
+    favorites: async (_, args, context) => {
+      if (context.user._id) {
+        return await Favorites.findOne({ user: context.user._id }).populate({
+          path: "products.product",
+          model: "Product",
+        });
+      }
+    },
+    ownedGames: async (_, args, context) => {
+      if (context.user._id)
+        return await Games.findOne({ user: context.user._id });
+    },
   },
   Mutation: {
     register: async (_, args) => {
@@ -92,7 +104,7 @@ const resolvers = {
         throw AuthenticationError;
       }
 
-      const token = await signToken(user);
+      const token = signToken(user);
 
       return { token, user };
     },
@@ -134,6 +146,7 @@ const resolvers = {
         }
 
         // Obtener o crear el objeto de favoritos del usuario
+        //We find the user, if theres no user we create one document with its id.
         let favorite = await Favorites.findOne({ user: context.user._id });
         if (!favorite) {
           favorite = await Favorites.create({
@@ -154,29 +167,32 @@ const resolvers = {
         return productToAdd;
       }
       throw new AuthenticationError("Not Authenticated");
+    },
+    addGame: async (_, { _id }, context) => {
+      if (context.user._id) {
+        const gametoAdd = await Product.findById(_id);
+        if (!gametoAdd) {
+          throw new Error("Game not found");
+        }
+        let game = await Games.findOne({ user: context.user._id });
+        if (!game) {
+          game = await Games.create({
+            user: context.user._id,
+            ownedGames: [],
+          });
+          await User.findByIdAndUpdate(context.user._id, {
+            games: game._id,
+          });
+        }
 
-      // if (context.user) {
-      //   let flag = false;
-
-      //   const gameToAdd = await Product.findById(_id);
-
-      //   const checkRepetition = await User.findById(context.user._id);
-
-      //   checkRepetition.wishlist.map((el) => {
-      //     if (el.name === gameToAdd.name) {
-      //       flag = true;
-      //     }
-      //   });
-
-      //   if (!flag) {
-      //     await User.findByIdAndUpdate(context.user._id, {
-      //       $push: { wishlist: gameToAdd },
-      //     });
-      //     return gameToAdd;
-      //   }
-      //   throw AuthenticationError;
-      // }
-      // throw AuthenticationError;
+        // Añadir el producto a los favoritos si aún no está presente
+        if (!game.ownedGames.includes(_id)) {
+          game.ownedGames.push(_id);
+          await game.save();
+        }
+        return gametoAdd;
+      }
+      throw new AuthenticationError("Not Authenticated");
     },
   },
   // ... add other resolvers ...

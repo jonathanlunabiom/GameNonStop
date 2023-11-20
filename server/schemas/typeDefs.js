@@ -25,6 +25,7 @@ type CartItem {
 }
 
 type Games {
+  user: ID!
   ownedGames: [ID!]
 }
 
@@ -34,7 +35,7 @@ type User {
   email: String!
   wishlist: Favorites
   orders: [Cart]
-  games: [Games]
+  games: Games 
 }
 
 type Favorites {
@@ -76,6 +77,8 @@ type Query{
   product(_id: ID!): Product
   userOrders(_id: ID!): [Cart] 
   checkout(products: [CatrInput]): Checkout
+  favorites: Favorites
+  ownedGames: Games
 }
 
 type Mutation {
@@ -83,6 +86,7 @@ type Mutation {
   login(email: String!, password: String!): Auth
   addtoFavorites (_id: ID!): Product
   addOrder(_id: ID!, items: [CatrInput!]!, total: Float!): Cart
+  addGame(_id: ID!): Product
 }
 `;
 module.exports = typeDefs;
