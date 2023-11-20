@@ -31,35 +31,56 @@ const Header = () => {
     Auth.logout();
   };
 
-  return ( 
-    <HeaderContainer>
-      <Logo>GameNonStop</Logo>
-      <Navigation>
-        <StyledNavLink to="/">Home</StyledNavLink> 
-        <StyledNavLink to="/WishList">Wish List</StyledNavLink> 
-        <StyledNavLink to="/cart">My Cart</StyledNavLink>
-        <LoginButton onClick={handleLoginClick}>Log In</LoginButton>
-        <LoginButton onClick={handleSignupClick}>Register</LoginButton>
-        <LoginButton onClick={handleLogOut}>Log Out</LoginButton>
-      <LoginFormModal show={showLoginModal} onClose={handleCloseLogin} />
-      <SignUpFormModal show={showSignUpModal} onClose={handleCloseSignup} />
-      </Navigation>
-      <IconButton onClick={toggleTheme}>
-      {theme === 'light' ? <FaRegMoon size={24} /> : <FaRegSun size={24} />} 
-      </IconButton>
-      <div>
-        <SocialMediaButton href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-          <FaFacebookF />
-        </SocialMediaButton>
-        <SocialMediaButton href="https://www.twitter.com" target="_blank" aria-label="Twitter">
-          <FaTwitter />
-        </SocialMediaButton>
-        <SocialMediaButton href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-          <FaInstagram />
-        </SocialMediaButton>
-      </div>
-    </HeaderContainer>
-  );
+  const socialMedia = () =>{
+    return(<div>
+      <SocialMediaButton href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+        <FaFacebookF />
+          </SocialMediaButton>
+          <SocialMediaButton href="https://www.twitter.com" target="_blank" aria-label="Twitter">
+            <FaTwitter />
+          </SocialMediaButton>
+          <SocialMediaButton href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+        <FaInstagram />
+      </SocialMediaButton>
+    </div>)
+  }
+
+  if (Auth.loggedIn()){
+    return ( 
+      <HeaderContainer>
+        <Logo>GameNonStop</Logo>
+        <Navigation>
+          <StyledNavLink to="/">Home</StyledNavLink> 
+          <StyledNavLink to="/WishList">Wish List</StyledNavLink> 
+          <StyledNavLink to="/cart">My Cart</StyledNavLink>
+          <LoginButton onClick={handleLogOut}>Log Out</LoginButton>
+        <LoginFormModal show={showLoginModal} onClose={handleCloseLogin} />
+        <SignUpFormModal show={showSignUpModal} onClose={handleCloseSignup} />
+        </Navigation>
+        <IconButton onClick={toggleTheme}>
+        {theme === 'light' ? <FaRegMoon size={24} /> : <FaRegSun size={24} />} 
+        </IconButton>
+        {socialMedia()}
+      </HeaderContainer>
+    )     
+    }else{
+      return ( 
+        <HeaderContainer>
+          <Logo>GameNonStop</Logo>
+          <Navigation>
+            <LoginButton onClick={handleLoginClick}>Log In</LoginButton>
+            <LoginButton onClick={handleSignupClick}>Register</LoginButton>
+          <LoginFormModal show={showLoginModal} onClose={handleCloseLogin} />
+          <SignUpFormModal show={showSignUpModal} onClose={handleCloseSignup} />
+          </Navigation>
+          <IconButton onClick={toggleTheme}>
+            {theme === 'light' ? <FaRegMoon size={24} /> : <FaRegSun size={24} />} 
+          </IconButton>
+            {socialMedia()}
+        </HeaderContainer>
+      )     
+    }
+  
 };
 
 export default Header;
