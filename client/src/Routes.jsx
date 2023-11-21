@@ -4,6 +4,7 @@ import Games from "./assets/components/Games";
 import Cart from "./assets/components/Cart";
 import Footer from "./assets/components/Footer";
 
+
 const AppRoutes = () => {
   return (
     <>
