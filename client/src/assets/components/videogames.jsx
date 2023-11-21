@@ -115,12 +115,6 @@ const Button = styled.button /*style*/`
   }
 `;
 
-// const addToCart = (product) => {
-//   setCart([{
-//     items:[...cart.items,product]
-//   }])
-// }
-
 const GameList = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
   const [selectedGame, setSelectedGame] = useState(null);
@@ -128,18 +122,6 @@ const GameList = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-
-  const addToCart = (game) => {
-    // Logic to add the game to the cart
-    console.log('Adding to cart:', game.name);
-    // Update the cart state/context here
-  };
-
-  const addToWishlist = (game) => {
-    // Logic to add the game to the wishlist
-    console.log('Adding to wishlist:', game.name);
-    // Update the wishlist state/context here
-  };
 
   const games = data.products;
 
