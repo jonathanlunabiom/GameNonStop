@@ -16,13 +16,15 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <CartProvider>
+    
       <ApolloProvider client={client}>
+        <CartProvider>
         <ThemeProvider>
           <StyledThemeProviderWrapper />
         </ThemeProvider>
+        </CartProvider>
       </ApolloProvider>
-    </CartProvider>
+   
   );
 }
 

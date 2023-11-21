@@ -27,6 +27,9 @@ const Cart = () => {
     });
   };
 
+  localStorage.setItem('cart', JSON.stringify(cart));
+  console.log("cart cart: " + cart);
+
   // Calculate total price
   const totalPrice = cart?.items?.reduce((total, item) => total + item.price * (item.quantity || 1), 0) ?? 0;
 

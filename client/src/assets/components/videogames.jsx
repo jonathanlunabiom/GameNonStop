@@ -123,6 +123,9 @@ const GameList = () => {
     closeModal();
   };
 
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+
   return (
     <div>
       <GameListContainer>
