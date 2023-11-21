@@ -9,7 +9,9 @@ const GlobalStyles = createGlobalStyle`
     padding-right: 1rem;
     padding-left: 1rem;
     overflow: scroll;
+    margin: 0;
   }
 `
+
 
 export default GlobalStyles;

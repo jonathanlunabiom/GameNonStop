@@ -9,6 +9,35 @@ const Div = styled.div /*style*/`
   bottom: 1rem;
 `;
 
+const AddToCartButton = styled.button`
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #45a049;
+  }
+`;
+
+const AddToWishlistButton = styled.button`
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #45a049;
+  }
+`;
+
 const GameCard = styled.div`
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -99,6 +128,18 @@ const GameList = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+
+  const addToCart = (game) => {
+    // Logic to add the game to the cart
+    console.log('Adding to cart:', game.name);
+    // Update the cart state/context here
+  };
+
+  const addToWishlist = (game) => {
+    // Logic to add the game to the wishlist
+    console.log('Adding to wishlist:', game.name);
+    // Update the wishlist state/context here
+  };
 
   const games = data.products;
 
