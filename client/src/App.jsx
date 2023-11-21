@@ -1,3 +1,4 @@
+
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './thems';
 import GlobalStyles from './globalStyles';
