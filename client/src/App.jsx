@@ -17,13 +17,13 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <CartProvider>
       <ApolloProvider client={client}>
-        <ThemeProvider>
-          <StyledThemeProviderWrapper />
-        </ThemeProvider>
+        <CartProvider>
+          <ThemeProvider>
+            <StyledThemeProviderWrapper />
+          </ThemeProvider>
+        </CartProvider>
       </ApolloProvider>
-    </CartProvider>
   );
 }
 

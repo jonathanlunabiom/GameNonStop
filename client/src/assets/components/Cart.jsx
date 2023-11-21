@@ -9,12 +9,9 @@ const Cart = () => {
 
   // Function to remove item from cart
   const handleRemove = (itemId) => {
-    console.log('Before removal:', cart);
     setCart({
       items: cart?.items?.filter(item => item._id !== itemId) || []
     });
-    console.log('After removal:', cart);
-    console.log(itemId);
   };
 
   // Function to update quantity
@@ -26,6 +23,8 @@ const Cart = () => {
       )
     });
   };
+
+  localStorage.setItem('cart', JSON.stringify(cart));
 
   // Calculate total price
   const totalPrice = cart?.items?.reduce((total, item) => total + item.price * (item.quantity || 1), 0) ?? 0;
