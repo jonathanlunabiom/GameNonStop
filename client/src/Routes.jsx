@@ -8,12 +8,12 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Games />} />
-        <Route path="cart" element={<Cart />} />
+          <Route index element={<><Games /><Footer /></>} />
+          <Route path="cart" element={<><Cart /><Footer /></>} />
         <Route path="Wishlist" element={<Whishlist />} />
       </Route>
     </Routes>
-  );
-};
-
+);
+}
 export default AppRoutes;
+
