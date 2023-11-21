@@ -7,6 +7,7 @@ import { ThemeProvider } from './assets/components/ThemeContext';
 import { useTheme } from './assets/components/ThemeContext';
 import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { CartProvider } from './assets/utils/CartContext';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -16,19 +17,20 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <ThemeProvider> 
-        <StyledThemeProviderWrapper />
-      </ThemeProvider>
-    </ApolloProvider>
-
+    <CartProvider>
+      <ApolloProvider client={client}>
+        <ThemeProvider>
+          <StyledThemeProviderWrapper />
+        </ThemeProvider>
+      </ApolloProvider>
+    </CartProvider>
   );
 }
 
 export default App;
 
 function StyledThemeProviderWrapper() {
-  const { theme } = useTheme(); 
+  const { theme } = useTheme();
 
   return (
     <StyledThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
