@@ -1,17 +1,18 @@
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
-export const HeaderContainer = styled.header`
+export const HeaderContainer = styled.header /*style*/`
   background-image: url('https://media.rawg.io/media/games/062/06285b425e61623530c5430f20e5d222.jpg'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 5rem;
   color: ${({ theme }) => theme.text};
   border: solid 1px black;
+  border-radius: 6px;
 `;
 
 export const Navigation = styled.nav`
@@ -39,23 +40,22 @@ export const SocialMediaButton = styled.a`
   align-items: end;
 
   &:hover {
-    color: #ccc; 
+    color: #ccc;
   }
 `;
 
-
 export const StyledNavLink = styled(NavLink)`
-  color: white; 
+  color: white;
   text-decoration: none;
-  margin-right: 10px; 
+  margin-right: 10px;
   font-weight: bold;
 
   &.active {
-    border-bottom: 2px solid white; 
+    border-bottom: 2px solid white;
   }
 
   &:hover {
-    color: #ccc; 
+    color: #ccc;
   }
 `;
 
@@ -64,20 +64,20 @@ export const Logo = styled.h1`
   cursor: pointer;
 `;
 export const LoginButton = styled.button`
-  background-color: #4CAF50; 
-  color: white; 
+  background-color: #4caf50;
+  color: white;
   padding: 10px 20px;
-  border: none; 
-  border-radius: 5px; 
-  cursor: pointer; 
-  font-size: 16px; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 
   &:hover {
-    background-color: #45a049; 
+    background-color: #45a049;
   }
 `;
 export const IconButton = styled.button`
-  background-color:gray;
+  background-color: gray;
   border: none;
   cursor: pointer;
   display: flex;
@@ -88,7 +88,7 @@ export const IconButton = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #f0f0f0; 
+    background-color: #f0f0f0;
   }
 
   &:focus {
