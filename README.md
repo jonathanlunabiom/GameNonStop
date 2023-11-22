@@ -71,13 +71,14 @@ A Diverse, accessible gaming store with unbeatable deals.
 
 1. Register for an account, select a Username, Email and Password for your new account:
 
-![ScreenShot](./img/ScreenShot2.png)
+![ScreenShot](./img/ScreenShot3.png)
 
 2. Once registered, you would get access to your Wish List and My Cart components:
 
-![ScreenShot](./img/ScreenShot3.png)
+![ScreenShot](./img/ScreenShot4.png)
+
 
 3. Click on your prefered title and send to your wish list or cart to buy. Ejoy your shopping!:
 
-![ScreenShot](./img/ScreenShot4.png)
+![ScreenShot](./img/ScreenShot5.png)
 
