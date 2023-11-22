@@ -78,7 +78,7 @@ A Diverse, accessible gaming store with unbeatable deals.
 ![ScreenShot](./img/ScreenShot4.png)
 
 
-3. Click on your prefered title and send to your wish list or cart to buy. Ejoy your shopping!:
+3. Click on your prefered title and send to your wish list or cart to buy. Enjoy shopping!:
 
 ![ScreenShot](./img/ScreenShot5.png)
 
