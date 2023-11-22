@@ -24,6 +24,7 @@ const Cart = () => {
           price: item.price * 100, // Convert to cents
           quantity: item.quantity,
         }));
+        setCart({ items: [] });
         console.log(lineItems);
         // Create a Checkout Session
         console.log('Before checkout mutation');
@@ -50,7 +51,7 @@ const Cart = () => {
           console.error('Invalid session ID received from the server');
         }
       } else {
-        console.error('Cart is empty');
+       
       }
     } catch (err) {
       console.error('Error during checkout:', err);
