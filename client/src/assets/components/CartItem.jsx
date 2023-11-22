@@ -75,7 +75,7 @@ const ActionButton = styled.button`
 
 
 const CartItem = ({ item, onRemove, onQuantityChange }) => {
-  console.log('Item:', JSON.stringify(item, null, 2));
+  // console.log('Item:', JSON.stringify(item, null, 2));
   return (
     <ItemContainer>
       <ItemDetails>
