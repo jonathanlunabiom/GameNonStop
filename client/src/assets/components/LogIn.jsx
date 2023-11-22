@@ -80,10 +80,6 @@ const LoginFormModal = ({ show, onClose }) => {
     console.log('Iniciar sesión con:', email, password);
   };
 
-  const handleSignUp = () => {
-    // Aquí añadir  lógica para el registro
-    console.log('Ir a la página de registro');
-  };
 
   if (!show) return null;
 

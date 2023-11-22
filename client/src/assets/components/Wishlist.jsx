@@ -43,11 +43,7 @@ const RemoveButton = styled.button`
 
 const Wishlist = () => {
   // Example wishlist items (usually this would come from a global state or API)
-  const [wishlistItems, setWishlistItems] = useState([
-    { id: 1, name: 'Game A', price: 29.99, imageUrl: 'path-to-image' },
-    { id: 2, name: 'Game B', price: 19.99, imageUrl: 'path-to-image' },
-    { id: 3, name: 'Game C', price: 9.99, imageUrl: 'path-to-image' },  
-    ]);
+  const [wishlistItems, setWishlistItems] = useState('');
 
   // Function to remove item from wishlist
   const handleRemove = (itemId) => {

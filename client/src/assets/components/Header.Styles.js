@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-export const HeaderContainer = styled.header`
-  background-image: url("https://media.rawg.io/media/games/062/06285b425e61623530c5430f20e5d222.jpg");
+export const HeaderContainer = styled.header /*style*/`
+  background-image: url('https://media.rawg.io/media/games/062/06285b425e61623530c5430f20e5d222.jpg'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -12,6 +12,7 @@ export const HeaderContainer = styled.header`
   padding: 5rem;
   color: ${({ theme }) => theme.text};
   border: solid 1px black;
+  border-radius: 6px;
 `;
 
 export const Navigation = styled.nav`

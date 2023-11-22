@@ -75,6 +75,7 @@ const ActionButton = styled.button`
 
 
 const CartItem = ({ item, onRemove, onQuantityChange }) => {
+  console.log('Item:', JSON.stringify(item, null, 2));
   return (
     <ItemContainer>
       <ItemDetails>
@@ -89,9 +90,9 @@ const CartItem = ({ item, onRemove, onQuantityChange }) => {
           type="number"
           min="1"
           value={item.quantity}
-          onChange={(e) => onQuantityChange(item.id, parseInt(e.target.value, 10))}
+          onChange={(e) => onQuantityChange(item._id, parseInt(e.target.value, 10))}
         />
-        <RemoveButton onClick={() => onRemove(item.id)}>Remove</RemoveButton>
+        <RemoveButton onClick={() => onRemove(item._id)}>Remove</RemoveButton>
       </div>
     </ItemContainer>
   );
