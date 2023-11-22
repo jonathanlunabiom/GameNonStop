@@ -1,5 +1,7 @@
 const { User, Product, Cart, Games, Favorites } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
+const stripe = require('stripe')('sk_test_51OCqBSIHMJDsY8j8dZq0fUPBDORHladp9fsLACYR66K02tXbkGHDKNTyEwuLRb5TvEXCNXtqNAwNkgDIDEn3m6Ho00oqXTbVRt');
+const YOUR_DOMAIN = 'http://localhost:3000';
 
 const resolvers = {
   Query: {
@@ -168,6 +170,7 @@ const resolvers = {
       }
       throw new AuthenticationError("Not Authenticated");
     },
+
     addGame: async (_, { _id }, context) => {
       if (context.user._id) {
         const gametoAdd = await Product.findById(_id);
@@ -194,8 +197,36 @@ const resolvers = {
       }
       throw new AuthenticationError("Not Authenticated");
     },
+    
+    checkout: async (_, { lineItems }) => {
+      try {
+        console.log('Creating Checkout Session');
+        // Use the `lineItems` array to dynamically create products
+        const session = await stripe.checkout.sessions.create({
+          payment_method_types: ['card'],
+          line_items: lineItems.map((item) => ({
+            price_data: {
+              currency: 'usd',
+              product_data: {
+                name: item.name,
+              },
+              unit_amount: item.price,
+            },
+            quantity: item.quantity,
+          })),
+          mode: 'payment',
+          success_url: `${YOUR_DOMAIN}/success?session_id={CHECKOUT_SESSION_ID}`,
+          cancel_url: `${YOUR_DOMAIN}/cancel`,
+        });
+
+        console.log('Checkout Session created successfully');
+        return { sessionId: session.id };
+      } catch (error) {
+        console.error('Error during checkout:', error);
+        throw new Error('Error creating Checkout Session: ' + error.message);
+      }
+    },
   },
-  // ... add other resolvers ...
 };
 
 module.exports = resolvers;
