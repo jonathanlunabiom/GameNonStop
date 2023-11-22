@@ -1,8 +1,6 @@
 # GameNonStop
 Welcome to GameNonStop, your ultimate destination for endless gaming! From the latest hits to timeless classics, we offer a vast selection of video games for all platforms, ensuring non-stop fun at unbeatable prices. Game on, non-stop, at GameNonStop! 
 
-![Explore the docs](https://github.com/jonathanlunabiom/GameNonStop) - ![Report Bug](https://github.com/jonathanlunabiom/GameNonStop/issues) - ![Request Feature](https://github.com/jonathanlunabiom/GameNonStop/issues)
-
 ## Table of Contents
 * [About the project](#about-the-project)
 * [Concept](#concept)
@@ -10,7 +8,6 @@ Welcome to GameNonStop, your ultimate destination for endless gaming! From the l
 * [Technologies Used](#technologies)
 * [Installation](#installation)  
 * [Usage](#usage)
-* [Questions](#questions)
 
 ## About the project
 In this project, we embark on creating a cutting-edge MERN-stack single-page application, integrating the power of MongoDB, GraphQL, Express.js, and Node.js with a dynamic React front end. Central to this endeavor is the implementation of robust user authentication using JWT, ensuring a secure, user-centric experience. Embracing agile development methodologies, the code was diligently managed on GitHub, with project progression overseen.
@@ -34,6 +31,8 @@ In this project we encompass:
 
 A Diverse, accessible gaming store with unbeatable deals.
 
+![ScreenShot](./img/ScreenShot2.png)
+
 ## User Story
 
 **As a** gaming enthusiast,
@@ -48,10 +47,38 @@ A Diverse, accessible gaming store with unbeatable deals.
 
 ## Instalation
 
+0. Run deployed app at: https://gamenonstop-c06e95f2ab86.herokuapp.com/
 
+1. Clone the repo
+   ```sh
+   git clone https://github.com/jonathanlunabiom/GameNonStop.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm run install
+   ```
+3. Seed the database
+   ```sh
+   cd server
+   npm run seed
+   ```
+4. run
+   ```sh
+   npm run develop
+   ```
 
 ## Usage
 
+1. Register for an account, select a Username, Email and Password for your new account:
+
+![ScreenShot](./img/ScreenShot3.png)
+
+2. Once registered, you would get access to your Wish List and My Cart components:
+
+![ScreenShot](./img/ScreenShot4.png)
 
 
-## Questions
+3. Click on your prefered title and send to your wish list or cart to buy. Enjoy shopping!:
+
+![ScreenShot](./img/ScreenShot5.png)
+
