@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql} from '@apollo/client';
 
 // Query to fetch all products
 export const LOGIN_USER = gql`
@@ -11,6 +11,15 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const CHECKOUT = gql`
+  mutation Checkout($lineItems: [LineItemInput!]!) {
+    checkout(lineItems: $lineItems) {
+      sessionId
+    }
+  }
+`;
+
 
 export const ADD_USER = gql`
   mutation register(
