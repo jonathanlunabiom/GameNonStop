@@ -32,7 +32,7 @@ In this project we encompass:
 
 A Diverse, accessible gaming store with unbeatable deals.
 
-![ScreenShot](img/Screen Shot 2023-11-21 at 6.42.46 PM.png)
+![ScreenShot](./img/Screen%20Shot%202023-11-21%20at%206.42.46%20PM.png)
 
 ## User Story
 
