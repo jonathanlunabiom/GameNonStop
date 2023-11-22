@@ -8,7 +8,6 @@ Welcome to GameNonStop, your ultimate destination for endless gaming! From the l
 * [Technologies Used](#technologies)
 * [Installation](#installation)  
 * [Usage](#usage)
-* [Questions](#questions)
 
 ## About the project
 In this project, we embark on creating a cutting-edge MERN-stack single-page application, integrating the power of MongoDB, GraphQL, Express.js, and Node.js with a dynamic React front end. Central to this endeavor is the implementation of robust user authentication using JWT, ensuring a secure, user-centric experience. Embracing agile development methodologies, the code was diligently managed on GitHub, with project progression overseen.
@@ -32,7 +31,7 @@ In this project we encompass:
 
 A Diverse, accessible gaming store with unbeatable deals.
 
-![ScreenShot](./img/Screen%20Shot%202023-11-21%20at%206.42.46%20PM.png)
+![ScreenShot](./img/ScreenShot2.png)
 
 ## User Story
 
@@ -68,15 +67,17 @@ A Diverse, accessible gaming store with unbeatable deals.
    npm run develop
    ```
 
-### Back-End Specifications
-
-
-### Front-End Specifications
-
-
-
 ## Usage
 
+1. Register for an account, select a Username, Email and Password for your new account:
 
+![ScreenShot](./img/ScreenShot2.png)
 
-## Questions
+2. Once registered, you would get access to your Wish List and My Cart components:
+
+![ScreenShot](./img/ScreenShot3.png)
+
+3. Click on your prefered title and send to your wish list or cart to buy. Ejoy your shopping!:
+
+![ScreenShot](./img/ScreenShot4.png)
+
