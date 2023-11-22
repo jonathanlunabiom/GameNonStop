@@ -47,7 +47,7 @@ A Diverse, accessible gaming store with unbeatable deals.
 
 ## Instalation
 
-0. Run deployed app at: https://XXXXXX.XXXX.XXXX
+0. Run deployed app at: https://gamenonstop-c06e95f2ab86.herokuapp.com/
 
 1. Clone the repo
    ```sh
