@@ -203,9 +203,11 @@ const resolvers = {
         console.log('Creating Checkout Session');
         // Use the `lineItems` array to dynamically create products
         const session = await stripe.checkout.sessions.create({
+         //payment_method_types: ['oxxo','card'],
           payment_method_types: ['card'],
           line_items: lineItems.map((item) => ({
             price_data: {
+              //currency: 'mxn',
               currency: 'usd',
               product_data: {
                 name: item.name,
