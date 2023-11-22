@@ -1,8 +1,6 @@
 # GameNonStop
 Welcome to GameNonStop, your ultimate destination for endless gaming! From the latest hits to timeless classics, we offer a vast selection of video games for all platforms, ensuring non-stop fun at unbeatable prices. Game on, non-stop, at GameNonStop! 
 
-![Explore the docs](https://github.com/jonathanlunabiom/GameNonStop) - ![Report Bug](https://github.com/jonathanlunabiom/GameNonStop/issues) - ![Request Feature](https://github.com/jonathanlunabiom/GameNonStop/issues)
-
 ## Table of Contents
 * [About the project](#about-the-project)
 * [Concept](#concept)
@@ -34,6 +32,8 @@ In this project we encompass:
 
 A Diverse, accessible gaming store with unbeatable deals.
 
+![ScreenShot](img/Screen Shot 2023-11-21 at 6.42.46 PM.png)
+
 ## User Story
 
 **As a** gaming enthusiast,
@@ -47,6 +47,31 @@ A Diverse, accessible gaming store with unbeatable deals.
 ![NODE.JS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 
 ## Instalation
+
+0. Run deployed app at: https://XXXXXX.XXXX.XXXX
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/jonathanlunabiom/GameNonStop.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm run install
+   ```
+3. Seed the database
+   ```sh
+   cd server
+   npm run seed
+   ```
+4. run
+   ```sh
+   npm run develop
+   ```
+
+### Back-End Specifications
+
+
+### Front-End Specifications
 
 
 
