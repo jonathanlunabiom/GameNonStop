@@ -5,7 +5,7 @@ const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
     transition: all 0.25s linear;
-    font-family: Arial;
+    font-family: 'Kdam Thmor Pro', sans-serif;
     padding-right: 1rem;
     padding-left: 1rem;
     overflow: scroll;

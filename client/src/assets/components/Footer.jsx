@@ -55,8 +55,8 @@ const Footer = () => {
       <FooterContainer>
         <FooterNav>
           <Link href="/">Home</Link>
-          <Link href="/wishList">Plants</Link>
-          <Link href="/cart">About</Link>
+          <Link href="/wishList">WishList</Link>
+          <Link href="/cart">Cart</Link>
           <Link href="/contact">Contact</Link>
         </FooterNav>
         <SocialLinks>
