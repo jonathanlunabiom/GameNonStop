@@ -5,6 +5,7 @@ import Cart from "./assets/components/Cart";
 import Whishlist from "./assets/components/Wishlist";
 import Footer from "./assets/components/Footer";
 
+
 const AppRoutes = () => {
   return (
     <Routes>

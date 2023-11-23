@@ -33,13 +33,13 @@ const Header = () => {
 
   const socialMedia = () =>{
     return(<div>
-      <SocialMediaButton href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+      <SocialMediaButton href="https://www.facebook.com/people/Game-Non-Stop/100066726956310/" target="_blank" aria-label="Facebook">
         <FaFacebookF />
           </SocialMediaButton>
-          <SocialMediaButton href="https://www.twitter.com" target="_blank" aria-label="Twitter">
+          <SocialMediaButton href="https://twitter.com/game_non_stop" target="_blank" aria-label="Twitter">
             <FaTwitter />
           </SocialMediaButton>
-          <SocialMediaButton href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+          <SocialMediaButton href="https://www.instagram.com/gamenonstopi/" target="_blank" aria-label="Instagram">
         <FaInstagram />
       </SocialMediaButton>
     </div>)
